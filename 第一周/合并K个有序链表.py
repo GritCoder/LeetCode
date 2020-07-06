@@ -15,7 +15,7 @@ class ListNode:
 #         else:
 #             tail.next = b
 #             b = b.next # 更新b
-#         tail = tail.next
+#         tail = tail.next # 更新tail
 #     if not a: tail.next = b
 #     if not b: tail.next = a
 #     return head.next # 因为head前定义了一个哑点

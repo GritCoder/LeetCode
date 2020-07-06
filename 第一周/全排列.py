@@ -35,5 +35,9 @@ def permute(inputs):
                 dfs(position + 1) # 全排列只跟位置有关 因为结果长度都是一样的 所以此处为position
                 visit[i] = False # 回溯至未访问
     dfs(0)
-    return res
-print(permute([1,2,3]))
+    # return res  # 正常返回结果
+    tmp = []
+    for item in res:
+        tmp.append(''.join(item))
+    return list(set(tmp))   # 若有重复字符，并且题目要求去重，则返回此结果
+print(permute('qqe'))
