@@ -6,19 +6,19 @@ class ListNode:
 # def mergeTwoList(a:ListNode, b:ListNode) -> ListNode:
 #     if not a: return b
 #     if not b: return a
-#     head = ListNode(0) # 哑点 # 若head = None 则return head即可
-#     tail = head
+#     dummy = ListNode(0) # 哑点 # 若head = None 则return head即可
+#     tail = dummy
 #     while(a and b):
 #         if(a.val < b.val):
 #             tail.next = a
-#             a = a.next # 更新a
+#             a = a.next # 更新a # 这里的更新有点类似于归并排序那里的更新 思路一样
 #         else:
 #             tail.next = b
 #             b = b.next # 更新b
 #         tail = tail.next # 更新tail
 #     if not a: tail.next = b
 #     if not b: tail.next = a
-#     return head.next # 因为head前定义了一个哑点
+#     return dummy.next # 因为head前定义了一个哑点
 # 合并两个链表 -> 递归合并
 def mergeTwoList(a:ListNode, b:ListNode) -> ListNode:
     if not a: return b

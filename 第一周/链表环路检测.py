@@ -7,16 +7,32 @@ slow 每走一步， fast 走两步；
 两者相遇时，将 slow 指针指向 head；
 以同样的速度移动 fast 和 slow，再次相遇的结点即为所求结果。
 '''
+'''
+数学原理解析
+作者很牛逼，我整理一下思路： 
+1.利用快慢指针判断有没有环 
+2.如果有，则快慢指针会在某点相遇，因为快指针多跑了，但相遇的点不一定是环的入口。
+3.不妨设链表的头节点到环的入口节点的距离为s1，入口节点到二者相遇点的距离为s2 
+4.我们得到这样一个各自所跑的距离 
+5.快指针移动的距离是y1=（ s1+s2+xn）快指针先从头节点跑到相遇节点，然后在环里不断的跑，x为跑的圈数，直到遇到慢指针 
+6. 满指针移动的距离是y2=（s1+s2）慢指针从头节点跑到二者相遇的阶段 
+7.二者存在一个潜在的等量关系，y1=2y2，即是（s1+s2+xn)=2(s1+s2) 
+8.整理一下s1+s2=xn; 8.进一步整理：s1=（n-s2）+（x-1）n 
+9.快指针移动s1步，到达入口，慢指针也移动s1步，换算成上面这个等式，(x-1)n等于绕圈，没动，实际移动了（n-s2），也到达了入口。 
+10.此时返回慢指针所指位置，就是入口。
+'''
 def detectCycle(head):
+    if not head or not head.next:
+        return
     slow, fast = head, head
     while fast and fast.next:  # 开始走位
         slow = slow.next
         fast = fast.next.next
-        if slow == fast:  # 相遇
-            break
-    # 若无相会处，则无环路
-    if not fast or not fast.next:
-        return None
+        if slow == fast:  # 如果链表中有环，那么快慢指针就一定可以相遇
+            break         # 因为当快指针到终点时 慢指针到中间 再走一圈必然相遇
+
+    if slow != fast: # 这个判断条件必须加  因为上面跳出循环也可能是循环体结束了导致的
+        return
     # 若两者以相同的速度移动，则必然在环路起始处相遇
     slow = head
     while slow != fast:

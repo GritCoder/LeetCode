@@ -11,7 +11,7 @@ class LinkNode:
 def reverseList(head: LinkNode) -> LinkNode:
     cur = None
     pre = head
-    while (pre):
+    while pre:
         # 好好理解中间变量(副本)的含义
         temp = LinkNode(pre.val) # 若没有此行，直接执行下面三句，会导致断链报错
         temp.next = cur # (1)
