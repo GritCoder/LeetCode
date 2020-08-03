@@ -18,13 +18,11 @@
 def max_Len_subStr(s: str) -> int:
     k, res, c_dict = -1, 0, {} # 分别初始化索引 结果 字典
     for i, c in enumerate(s):
-        if c in c_dict and c_dict[c] > k:  # 字符c在字典中 且 上次出现的下标大于当前长度的起始下标
+        if c in c_dict and c_dict[c] > k:  # 字符c在字典中 这么理解吧 通俗一点 比如一个序列是这样的 ..a...a.. 那么K指向的是第一个a c_dict[c]指向的是第二个a 这是核心 理解
             k = c_dict[c] # 更新 k 分析可知 k 始终指向上次出现元素的索引值
-            c_dict[c] = i # 更新重复元素的索引
-        else:
+            c_dict[c] = i # 更新重复元素的索引 c_dict[c] 指向的是当前的索引
+        else: # 若不在字典中 说明是新元素 可以计算当前长度了
             c_dict[c] = i # 字典结构是 字符为key 索引为值
             res = max(res, i - k) # 当前最大长度 # 这里k初始化-1作用就看出来了 确保第一个值正确更新
     return res
 print(max_Len_subStr("abcabcd"))
-
-# 白天先验证一下这个题与字符串去重的区别和联系
