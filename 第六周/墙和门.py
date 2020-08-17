@@ -38,13 +38,22 @@ def wallAndGate(matrix):
 
     for i in range(m):
         for j in range(n):
-            if matrix[i][j] == 0: # 找门
+            if matrix[i][j] == '.': # 找门
                 dfs(matrix, i, j, 0) # 0表示距离 一开始肯定初始化为0
     return matrix # 实际上是inplace操作 不用临时副本了
-print(wallAndGate([[float('inf'), -1, 0, float('inf')],
-                   [float('inf'), float('inf'), float('inf'), -1],
-                   [float('inf'), -1, float('inf'), -1],
-                   [0, -1, float('inf'), float('inf')]]))
+# print(wallAndGate([[float('inf'), -1, 0, float('inf')],
+#                    [float('inf'), float('inf'), float('inf'), -1],
+#                    [float('inf'), -1, float('inf'), -1],
+#                    [0, -1, float('inf'), float('inf')]]))
+
+in_ = list(map(int, input().strip().split()))
+H, W = in_[0], in_[1] # 行 列
+tmp = []
+matrix = []
+for i in range(H):
+    tmp = list(map(str, input().strip()))
+    matrix.append(tmp)
+print(wallAndGate(matrix))
 
 
 
