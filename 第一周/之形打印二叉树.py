@@ -6,7 +6,7 @@ class BinTreeNode:
 # 遍历s1节点的同时按照右子树、左子树的顺序加入s2，
 # 遍历s2节点的同时按照左子树、右子树的顺序加入s1
 def printTree(tree):  # 层序用队列比较方便
-    flag = 1
+    flag = 1 # 当前层
     q1 = Queue()
     q2 = Queue()
     if not tree: return

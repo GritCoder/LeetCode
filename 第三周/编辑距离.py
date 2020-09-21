@@ -21,4 +21,4 @@ def solution(word1, word2):
             left_up = dp[i-1][j-1] + 1 if word1[i-1] != word2[j-1] else dp[i-1][j-1]
             dp[i][j] = min(left, up, left_up)
     return dp[n][m]
-print(solution("horse", "ros"))
+print(solution("kitten","sitting"))
