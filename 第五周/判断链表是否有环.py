@@ -2,13 +2,10 @@
 def hasCycle(head):
     if not head or not head.next:
         return False
-    slow, fast = head, head
-    while fast and fast.next:
+    slow, fast = head, head.next
+    while slow != fast:
+        if not fast or not fast.next:
+            return False
         slow = slow.next
-        fast = fast.next
-        if slow == fast:
-            break
-    if fast != slow: # 要判断  因为循环体不一定是从break那里跳出来的  也可能是循环体正常结束
-        return False
-    else:
-        return True
+        fast = fast.next.next
+    return True
